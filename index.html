@@ -10,6 +10,73 @@
 
 <body>
   <script>
+    let playerScore = 0;
+    let comScore = 0;
+
+    let computerPlay = () => {
+      let choices = ["Rock", "Paper", "Scissors"];
+
+      // return "Rock", "Paper" or "Scissors"
+      return choices[Math.floor(Math.random() * choices.length)];
+    }
+
+    let playRound = (playerSelection, computerSelection) => {
+      // one round of the game
+      let player1 = playerSelection.toLowerCase();
+      let comChoice = computerSelection.toLowerCase();
+
+      if (player1 === "rock" && comChoice === "scissors"
+        || player1 === "scissors" && comChoice === "paper"
+        || player1 === "paper" && comChoice === "rock") {
+        playerScore += 1;
+        return `You win! ${player1} beats ${comChoice}`;
+      } else if (player1 === comChoice) {
+        return `Tie!`;
+      } else {
+        comScore += 1;
+        return `You lose! ${comChoice} beats ${player1}`;
+      }
+    }
+
+    let game = () => {
+
+      let computerSelection = computerPlay();
+      let playerSelection = prompt("Rock, Paper, Scissors?");
+      console.log(playRound(playerSelection, computerSelection));
+      console.log(playerScore, comScore);
+
+      computerSelection = computerPlay();
+      playerSelection = prompt("Rock, Paper, Scissors?");
+      console.log(playRound(playerSelection, computerSelection));
+      console.log(playerScore, comScore);
+
+      computerSelection = computerPlay();
+      playerSelection = prompt("Rock, Paper, Scissors?");
+      console.log(playRound(playerSelection, computerSelection));
+      console.log(playerScore, comScore);
+
+      computerSelection = computerPlay();
+      playerSelection = prompt("Rock, Paper, Scissors?");
+      console.log(playRound(playerSelection, computerSelection));
+      console.log(playerScore, comScore);
+
+      computerSelection = computerPlay();
+      playerSelection = prompt("Rock, Paper, Scissors?");
+      console.log(playRound(playerSelection, computerSelection));
+      console.log(playerScore, comScore);
+
+      if (playerScore > comScore) {
+        console.log(`Congrats you win! ${playerScore} to ${comScore}`);
+      } else if (playerScore < comScore) {
+        console.log(`You lost! Better luck next time! ${comScore} to ${playerScore}`);
+      } else {
+        console.log(`You both tied somehow!`);
+      }
+
+      // resets scores in case a new game is started
+      playerScore = 0;
+      comScore = 0;
+    }
 
   </script>
 </body>
